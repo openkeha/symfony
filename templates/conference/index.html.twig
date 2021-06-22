@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ conference }}{% endblock %}
+
+{% block body %}
+<div class="row">
+        <div class="col-4">
+            <img class="img-fluid" src="/uploads/{{ conference.image }}" alt="{{ conference.title }}" style="width: 100%">
+        </div>
+        <div class="col-8">
+                <h1 class="display-3 bg-info p-4 text-white">
+                    <i class="fa fa-map-marker-alt"></i> {{ conference.city }}<br>
+                    <i class="fa fa-calendar-alt"></i> {{ conference.year|format_datetime('medium', 'short') }}
+                </h1>
+                <p>{{ conference.description|raw}}</p>
+                <a href="{{ path('conferences') }}" class="btn btn-primary">retour à la liste</a>
+        </div>
+</div>
+<hr>
+<h4>Commentaires</h2>
+<hr>
+{% for comment in comments %}
+    <h5>
+        {{ comment.author }}
+    </h5>
+    <p>
+        {{ comment.text }}
+    </p>
+    <hr>
+{% endfor %}
+{% endblock %}
+
+{% block footer %}
+
+{% endblock %}
+

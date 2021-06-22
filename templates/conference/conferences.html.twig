@@ -1,0 +1,25 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<div class="row">
+    {% for conference in conferences %}
+    <div class="col-sm-6">
+        <div class="card text-white bg-dark ">
+            <div class="card-header">
+                {{ conference.title }}
+            </div>
+            <img class="card-img-top" src="/uploads/{{ conference.image }}" alt="{{ conference.title }}">
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item"><i class="fa fa-map-marker-alt"></i> {{ conference.city }}</li>
+                    <li class="list-group-item"><i class="fa fa-calendar-alt"></i> {{ conference.year|format_datetime('medium', 'short') }}</li>
+                    <li class="list-group-item"><i class="fa fa-user"></i>  {{ conference.speaker }}</li>
+                </ul>
+                <p class="card-text">{{ conference.description|raw}}</p>
+                <a href="{{ path('conference', { id: conference.id }) }}" class="btn btn-primary">Détails</a>
+            </div>
+        </div>
+    </div>
+     {% endfor %}
+</div>
+{% endblock %}
